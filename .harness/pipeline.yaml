@@ -1,0 +1,13 @@
+pipeline:
+  name: cicd-demo-pipeline
+  identifier: cicd_demo_pipeline
+  cloneCodebase: true
+    type: Run
+  image: sonarsource/sonar-scanner-cli:latest
+  -Dsonar.login=<+secrets.getValue('sonar_token')>
+  type: BuildAndPushDockerRegistry
+  connectorRef: gcr_connector
+  repo: gcr.io/cicd-project-001/cicd-demo-app
+  - <+pipeline.sequenceId>
+  - latest
+
