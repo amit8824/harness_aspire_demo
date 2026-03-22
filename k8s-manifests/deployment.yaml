@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cicd-demo-app
+  name: harness-aspire-demo
   namespace: default
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: cicd-demo-app
+      app: harness-aspire-demo
   template:
     metadata:
       labels:
-        app: cicd-demo-app
+        app: harness-aspire-demo
     spec:
       containers:
         - name: app
-          image: YOUR_DOCKERHUB_USERNAME/cicd-demo-app:latest
+          image: amit8824/harness-aspire-demo:latest
           ports:
             - containerPort: 8080
           livenessProbe:
