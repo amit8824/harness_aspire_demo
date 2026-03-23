@@ -16,6 +16,7 @@ spec:
       containers:
         - name: app
           image: amit8824/harness-aspire-demo:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
           livenessProbe:
