@@ -9,12 +9,10 @@ spec:
   namespaceSelector:
     matchNames:
       - istio-system
-      - default
   selector:
-    matchExpressions:
-      - key: istio
-        operator: Exists
+    matchLabels:
+      app: istiod
   endpoints:
     - port: http-monitoring
       interval: 15s
-      path: /stats/prometheus
+      path: /metrics
