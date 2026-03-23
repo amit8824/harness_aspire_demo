@@ -8,7 +8,7 @@ def health():
 
 @app.route('/', methods=['GET'])
 def index():
-    return jsonify({'message': 'CI/CD Demo App', 'version': '1.0.0'}), 200
+    return jsonify({'message': 'CI/CD Demo App', 'version': '1.1.0.'}), 200
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
