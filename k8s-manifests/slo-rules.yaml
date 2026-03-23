@@ -1,0 +1,31 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: slo-rules
+  namespace: monitoring
+  labels:
+    release: monitoring
+spec:
+  groups:
+    - name: slo
+      rules:
+        - record: slo:availability:ratio
+          expr: |
+            sum(rate(istio_requests_total{response_code!~"5.."}[5m]))
+            /
+            sum(rate(istio_requests_total[5m]))
+        - alert: AvailabilitySLOBreached
+          expr: slo:availability:ratio < 0.999
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Availability below 99.9%"
+            description: "Current value: {{ $value }}"
+        - alert: LatencySLOBreached
+          expr: slo:latency:ratio < 0.95
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Latency SLO breached"
