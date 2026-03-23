@@ -2,12 +2,11 @@ from flask import Flask, jsonify
 
 app = Flask(__name__)
 
-@app.route('/health')
+@app.route('/health', methods=['GET'])
 def health():
-    # Kubernetes calls this to check if pod is alive
     return jsonify({'status': 'ok'}), 200
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def index():
     return jsonify({'message': 'CI/CD Demo App', 'version': '1.0.0'}), 200
 
