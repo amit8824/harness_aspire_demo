@@ -7,9 +7,7 @@ metadata:
     release: monitoring
 spec:
   namespaceSelector:
-    matchNames:
-      - default
-      - istio-system
+    any: true
   selector:
     matchLabels: {}
   podMetricsEndpoints:

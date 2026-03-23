@@ -7,11 +7,15 @@ metadata:
     release: monitoring
 spec:
   namespaceSelector:
-    matchNames:
-      - istio-system
+    any: true
   selector:
-    matchLabels:
-      app: istiod
+    matchExpressions:
+      - key: app
+        operator: In
+        values:
+          - istiod
+          - istio-ingressgateway
+          - istio-egressgateway
   endpoints:
     - port: http-monitoring
       interval: 15s
