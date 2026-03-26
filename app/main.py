@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def index():
-    return jsonify({'message': 'CI/CD Demo App', 'version': '1.1.1'}), 200
+    return jsonify({'message': 'CI/CD Demo App', 'version': '1.0.0'}), 200
 
 @app.route('/health', methods=['GET'])
 def health():
